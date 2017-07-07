@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Radius and circumference of a circle</title>
+<style type="text/css"><!--
+  div#wCircleDiagram { position: relative; margin: 25px; height: 400px; width: 400px; background-image: url("circumfradiusdiagram.png") }
+  div#circumfDisplay, div#radiusDisplay { position: absolute; font-family: Impact, sans-serif; font-size: 24pt }
+  div#circumfDisplay { top: 40px; left: 65px; color: #000080; transform: skew(210deg, 170deg) }
+  div#radiusDisplay { top: 160px; left: 200px; color: #008080 }
+--></style>
+<script type="text/javascript"><!--
+
+  function refreshDiagramNumbers(r, c) {
+    document.getElementById("circumfDisplay").innerText = c;
+    document.getElementById("radiusDisplay").innerText = r
+  }
+
+  function recalcCircumf() {
+    var radius = document.forms["radiusCircumfCalc"]["radius"].value;
+    var circumf = 2 * radius * Math.PI;
+    document.forms["radiusCircumfCalc"]["circumf"].value = circumf;
+    refreshDiagramNumbers(radius, circumf)
+  }
+
+  function recalcRadius() {
+    var circumf = document.forms["radiusCircumfCalc"]["circumf"].value;
+    var radius = circumf/(2 * Math.PI);
+    document.forms["radiusCircumfCalc"]["radius"].value = radius
+    refreshDiagramNumbers(radius, circumf)
+  }
+
+--></script>
+</head>
+<body>
+
+<h1>Radius and circumference of a circle</h1>
+
+<form name="radiusCircumfCalc">
+
+Radius: <input type="number" name="radius" value="10" min="0" oninput="recalcCircumf()">
+
+Circumference: <input type="number" name="circumf" value="30" min="0" oninput="recalcRadius()">
+
+</form>
+
+<div id="wCircleDiagram">
+
+<div id="circumfDisplay">Approx. 30</div>
+
+<div id="radiusDisplay">Approx. 10</div>
+
+</div>
+
+</body>
+</html>
